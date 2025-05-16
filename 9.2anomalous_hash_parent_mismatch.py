@@ -35,5 +35,5 @@ anomaly_df = anomaly_df.sort_values(["HASHED_MERCH_ID", "Parent Name", "State", 
 anomaly_df.to_csv(os.path.join(base_path, "anomalous_hash_parent_mismatch.csv"), index=False)
 
 # Display how many such anomalies exist
-print(f"🔍 Found {len(parent_counts)} HASHED_MERCH_IDs with multiple parent names.")
-print("✅ Output saved as 'anomalous_hash_parent_mismatch.csv'")
+print(f"Found {len(parent_counts)} HASHED_MERCH_IDs with multiple parent names.")
+print("Output saved as 'anomalous_hash_parent_mismatch.csv'")

@@ -1,0 +1,47 @@
+import pandas as pd
+
+# Load US cities reference file
+base_path = Path("use relative path to your data folder")
+#uscities_path = '/mmfs1/projects/f8d7c0/2024-25/Gate City Bank/Kiran/uscities.csv'
+uscities_df = pd.read_csv(uscities_path)
+uscities_df['city_lower'] = uscities_df['city'].str.lower()
+
+# Create lookup dictionary: {state: set(cities)}
+city_dict = {}
+for _, row in uscities_df.iterrows():
+    state = row['state_id']
+    city = row['city_lower']
+    city_dict.setdefault(state, set()).add(city)
+
+# Function to find city in TERM_ADDR
+def find_city(row):
+    state = str(row['State']).strip()
+    address = str(row['TERM_ADDR']).lower()
+    if state in city_dict:
+        for city in city_dict[state]:
+            if city in address:
+                return uscities_df.loc[uscities_df['city_lower'] == city, 'city'].values[0]
+    return None
+
+# Files to process
+files = [
+    'Processed_Online_Filled_WithIndustry.csv',
+    'Processed_OfflineWithHash_Filled_WithIndustry.csv',
+    'Processed_Offline_Filled_WithIndustry.csv'
+]
+
+base_path = '/mmfs1/projects/f8d7c0/2024-25/Gate City Bank/Kiran/'
+
+# Process each file
+for file in files:
+    print(f"Processing {file} ...")
+    df = pd.read_csv(base_path + file)
+    df.columns = df.columns.str.strip()
+
+    # Apply city extraction
+    df['Cities'] = df.apply(find_city, axis=1)
+
+    # Save updated file
+    output_file = base_path + file.replace('.csv', '_Cities.csv')
+    df.to_csv(output_file, index=False)
+    print(f"Saved with city names: {output_file}")

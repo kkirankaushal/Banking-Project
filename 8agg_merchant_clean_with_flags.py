@@ -75,5 +75,5 @@ df_agg = df_all.groupby(group_fields).agg({
 output_file = base_path / "agg_merchant_clean_with_flags.csv"
 df_agg.to_csv(output_file, index=False)
 
-print(f"✅ Final enriched table saved to: {output_file}")
-print(f"✅ Rows: {len(df_agg):,}")
+print(f"Final enriched table saved to: {output_file}")
+print(f"Rows: {len(df_agg):,}")
