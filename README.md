@@ -1,4 +1,4 @@
-# Data-Handling-Codes
+# Banking Data Handling and Tableau Project
 
 This repository contains Python scripts designed for handling and cleaning data for a bank. The cleaned data is prepared for further analysis and visualization in Tableau. The scripts are organized in a sequential order, with sub-steps for specific tasks.
 
@@ -100,6 +100,10 @@ The scripts should be executed in the following order:
 
 29. **`11.3aggSQandPaypal.py`**  
     Aggregates Square and PayPal data.
+
+## Tableau Folder
+
+The `Tableau` folder contains additional scripts and codes specifically designed to handle data for Tableau dashboards. These scripts are used to create and manage tables that are directly utilized in Tableau for visualization purposes.
 
 ## How to Run
 
