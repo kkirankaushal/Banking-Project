@@ -1,7 +1,7 @@
 import pandas as pd
 from rapidfuzz import process, fuzz
 
-# Load your file
+# Load  file
 df = pd.read_csv("/mmfs1/projects/f8d7c0/2024-25/Gate City Bank/Kiran/top_1000_offline_shopnames.csv")
 df['ShopName'] = df['ShopName'].astype(str).str.strip().str.upper()
 
